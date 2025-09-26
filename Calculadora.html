@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Calculadora web</title>
+    <link rel="icon" href="https://img.freepik.com/vector-gratis/icono-calculadora-matematica_24877-83245.jpg?semt=ais_hybrid&w=740&q=80" type="image/jpg?semt" >
+    <style>
+        body {
+            display: grid;
+            height: 100vh;
+            grid-template-columns: 180px 1fr;
+            grid-template-rows: 1fr;
+            grid-template-areas: "bar m";
+            margin: 0;
+            font-family: Arial, Helvetica, sans-serif;
+            background-color: white;
+        }
+        nav.bar {
+            grid-area: bar;
+            background-color: #ccc;
+            display: flex;
+            flex-direction: column;
+        }
+        main.m { 
+            grid-area: m; 
+            background-color: white;
+        }
+        #home {
+            display: grid;
+            height: 100vh;
+            grid-template-columns: 1fr 400px 1fr;
+            grid-template-rows: 60px 40px 15px 15px 1fr 300px 30px 20px;
+            grid-template-areas:
+                "h1 h1 h1"
+                ". h4-1 ."
+                ". h4-2 ."
+                ". . ."
+                ". label ."
+                ". p ."
+                "footer footer footer"
+                ". . .";
+            justify-items: center;
+            align-items: center;
+            margin: 10px;
+            background-color: white;
+            padding: 10px;
+            box-sizing: border-box;
+        }
+        #home h1 {
+            grid-area: h1;
+            background: rgb(74, 136, 170);
+            width: 100%;
+            height: 100%;
+            text-align: center;
+            color: white;
+            border-radius: 10px;
+            margin: 5px;
+        }
+        #help {
+            padding: 20px;
+            margin: 0;
+            background-color: white;
+        }
+        main section:not(.active) { display: none !important; }
+        main section.active { display: grid; }
+        input {
+            font-size: 1.6em;
+            border: 2.5px solid rgb(74, 136, 170);
+            border-radius: 10px;
+        }
+        input:focus {
+            border-color: rgb(54, 103, 130);
+            box-shadow: 0 0 5px rgb(74, 136, 170);
+            outline: none;
+        }
+        #h4-1 {grid-area: h4-1;}
+        #h4-2 {grid-area: h4-2;}
+        h4 { width: 400px; text-align: center; }
+        label {grid-area: label;}
+        .footer {grid-area: footer;}
+        nav a {
+            color:#234;
+            text-decoration:none;
+            padding:8px 10px;
+            border-radius:8px;
+            display:inline-block;
+        }
+        nav.bar {
+            background:#f0f3f5;
+            border-right:1px solid #d6d8da;
+            padding:18px 12px;
+            box-sizing:border-box;
+            display:flex;
+            flex-direction:column;
+            gap:8px;
+        }
+        nav a.active {
+            background:#4a88aa;
+            color:#fff;
+            font-weight:600;
+        }
+        #p {
+            grid-area: p;
+            font-size: x-large;
+            width: 100%;
+            height: 100%;
+            text-align: center;
+        }
+        button {
+            font-size: 1.6em;
+            color: white;
+            border-radius: 10px;
+            background-color: rgb(0, 195, 255);
+            border-style: none;
+        }
+        button:hover {
+            background-color: rgb(69, 211, 255);
+            box-shadow: 0 0 5px rgb(74, 136, 170);
+        }
+        button:active { transform: scale(0.90); }
+        #enlace {
+            background: rgb(69, 211, 255);
+            color: #234;
+            border-radius: 5px;
+            text-decoration: none;
+        }
+        #enlace:hover { box-shadow: 0 0 5px rgb(74, 136, 170); }
+    </style>
+</head>
+<body>
+    <nav class="bar">
+        <a href="#home">Home</a>
+        <a href="#help">Help</a>
+    </nav>
+    <main class="m">
+        <section id="home" class="active">
+            <h1>Calculadora</h1>
+            <h4 id="h4-1">Escribe la operación usando estos operadores:</h4>
+            <h4 id="h4-2">+, -, *, /, r(raíz cuadrada), **(elevado a)</h4>
+            <label>
+                <h3>Escribe la operación:</h3>
+                <br>
+                <input type="text" placeholder="3 + 4 o r 5" id="operacion">
+                <button id="clear">AC</button>
+            </label>
+            <p id="p"><strong id="solucion"></strong></p>
+            <footer class="footer">
+                <p>Quien quiera saber más sobre las calculadoras y las matemáticas, hagan clic
+                    <a href="https://es.wikipedia.org/wiki/Calculadora" id="enlace" target="_blank" rel="noopener noreferrer">aquí</a>.
+                </p>
+            </footer>
+        </section>
+
+        <section id="help">
+            <h1 style="background: rgb(74, 136, 170); color: white; text-align: center; border-radius: 10px; padding: 10px; margin: 0;">
+                Help
+            </h1>
+            <div style="padding: 20px; max-width: 600px; margin: 20px auto; text-align: left; font-family: Arial, Helvetica, sans-serif; font-size: 1.1em; line-height: 1.6; background-color: rgb(214, 215, 215); border-radius: 10px; box-shadow: 0 0 5px rgb(74, 136, 170);">
+                <h2 style="color: rgb(74, 136, 170);">Cómo usar la Calculadora</h2>
+                <p>Bienvenido a tu calculadora web. Aquí tienes algunas instrucciones para sacarle el máximo provecho:</p>
+
+                <h3>1. Operaciones básicas</h3>
+                <ul>
+                    <li>Suma: 3 + 5</li>
+                    <li>Resta: 8 - 2</li>
+                    <li>Multiplicación: 4 * 7</li>
+                    <li>División: 10 / 2 (No se puede dividir entre 0)</li>
+                </ul>
+
+                <h3>2. Operaciones avanzadas</h3>
+                <ul>
+                    <li>Potencia: 2 ** 3 (2 elevado a 3)</li>
+                    <li>Raíz cuadrada: r 9</li>
+                </ul>
+
+                <h3>3. Cómo ingresar la operación</h3>
+                <ul>
+                    <li>Escribe la operación en el cuadro de texto y pulsa <strong>Enter</strong>.</li>
+                    <li>Para borrar la respuesta actual o la entrada, pulsa el botón <strong>AC</strong>.</li>
+                </ul>
+
+                <h3>4. Errores comunes</h3>
+                <ul>
+                    <li>Asegúrate de separar los números y el operador con un espacio.</li>
+                    <li>Solo se permiten los símbolos: +, -, *, /, **, r.</li>
+                </ul>
+            </div>
+        </section>
+    </main>
+
+    <script src="backend.js"></script>
+</body>
+</html>
